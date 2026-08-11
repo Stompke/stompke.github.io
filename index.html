@@ -1,438 +1,309 @@
-<!DOCTYPE HTML>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Shawn Tompke | Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shawn Tompke — Senior Software Engineer</title>
+<meta name="description" content="Shawn Tompke — Senior software engineer working at the seam of design and engineering. Design systems, React, TypeScript, full-stack.">
+<style>
+  :root {
+    --bg: #0b0f14;
+    --bg-soft: #111722;
+    --card: #151d29;
+    --border: #1f2937;
+    --text: #e6edf3;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(56, 189, 248, .3); }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-gem"></span>
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h3>Hello, I'm</h3>
-								<h1>Shawn Tompke</h1>
-								<p>Web Developer in Wenatchee WA</p>
-								<p>REACT - REDUX - NODE JS - EXPRESS - HTML - JAVASCRIPT </p>
-								<ul class="icons">
-										<li><a href="https://github.com/Stompke" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-										<li><a href="https://www.linkedin.com/in/shawn-tompke/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked In</span></a></li>
-									</ul>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="#about">About</a></li>
-								<li><a href="#work">Work</a></li>
-								<li><a href="#contact">Contact</a></li>
-								
-								<!--<li><a href="#elements">Elements</a></li>-->
-							</ul>
-						</nav>
-					</header>
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 15, 20, .85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0;
+  }
+  .logo { font-weight: 700; letter-spacing: -.02em; font-size: 1.05rem; }
+  .logo span { color: var(--accent); }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: .92rem;
+    margin-left: 22px; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-				<!-- Main -->
-					<div id="main">
+  /* Hero */
+  header.hero { padding: 110px 0 90px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(600px 300px at 20% 0%, rgba(56,189,248,.12), transparent 70%),
+      radial-gradient(600px 300px at 85% 20%, rgba(129,140,248,.10), transparent 70%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    letter-spacing: -.03em; line-height: 1.1; font-weight: 800;
+  }
+  h1 .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tagline {
+    margin-top: 22px; max-width: 620px;
+    color: var(--muted); font-size: 1.15rem;
+  }
+  .hero-cta { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: .95rem;
+    padding: 12px 22px; border-radius: 10px; transition: transform .15s, box-shadow .15s, background .2s;
+  }
+  .btn-primary { background: var(--accent); color: #06121a; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(56,189,248,.25); }
+  .btn-ghost { border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover { background: var(--bg-soft); transform: translateY(-2px); }
 
-						<!-- Intro -->
-							<!-- <article id="intro">
-								<h2 class="major">Intro</h2>
-								<span class="image main"><img src="images/tompkeHike.jpg" alt="" /></span>
-								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-							</article> -->
+  /* Sections */
+  section { padding: 80px 0; }
+  section.alt { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  h2 {
+    font-size: 1.7rem; letter-spacing: -.02em; margin-bottom: 8px; font-weight: 700;
+  }
+  .sub { color: var(--muted); margin-bottom: 40px; max-width: 640px; }
 
-						<!-- Work -->
-							<article id="work">
-								<h2 class="major">Work</h2>
-								<!-- <span class="image main"><img src="images/pic02.jpg" alt="" /></span> -->
-								<section class="portfolioGrid">
-									<div class="portfolioBox">
-											<span class="image main"><img src="./images/minute-math.png" alt="" /></span>
-										<h3>Minute math</h3>
-										<h3>- A Web App/Game to practice your mental math in short 1 minute increments.</h3>
-											<h4>React | Redux | Node JS | Express | PostgreSQL </h4>
-												<ul>
-													<li>Independently built the full web application</li>
-													<li>Used React-Router to manage the various game type components</li>
-													<li>Implemented Node JS and Express to store game data to the database</li>
-												</ul>
-										<ul class="actions">
-											<li><a target="_blank" href="https://github.com/Stompke/speed-math" class="button primary">Code</a></li>
-											<li><a  target="_blank" href="https://minutemath.shawntompke.com" class="button">View</a></li>
-										</ul>
-										<p>login: test@testing.com <br> password: password</p>
-									</div>
-									<div class="portfolioBox">
-											<span class="image main"><img src="./images/essentialism.png" alt="" /></span>
-										<h3>Essentialism</h3>
-										<h3>- A Web Application to help organize what projects are essential for your goals.</h3>
-											<h4>React | Redux | Node JS | Express | PostgreSQL </h4>
-												<ul>
-													<li>Collaborated remotely with two other developers using agile development</li>
-													<li>Created the back-end code using Node JS and Express</li>
-													<li>Assisted the front end team by creating the dashboard page</li>
-												</ul>
-										<ul class="actions">
-											<li><a target="_blank" href="https://github.com/Essentialism-shawn" class="button primary">Code</a></li>
-											<li><a  target="_blank" href="https://essentialism.shawntompke.com" class="button">View</a></li>
-										</ul>
-										<p>login: test@testing.com <br> password: password</p>
-									</div>
+  /* Highlights */
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px; transition: transform .18s, border-color .18s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(56,189,248,.45); }
+  .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: .94rem; }
+  .card .icon { font-size: 1.5rem; margin-bottom: 14px; display: block; }
 
-									<div class="portfolioBox">
-											<span class="image main"><img src="./images/game-of-life.png" alt="" /></span>
-										<h3>Game of Life</h3>
-										<h3>- A visualization of Conway’s Game of Life</h3>
-											<h4>React</h4>
-												<ul>
-													<li>Created functions to follow the rules for Conway’s Game of Life</li>
-													<li>Updated the new grid after the effects of current grid were completed</li>
-													<li>Implemented css color change as the generations increased using jsx</li>
-												</ul>
-										<ul class="actions">
-											<li><a target="_blank" href="https://github.com/Stompke/game-of-life" class="button primary">Code</a></li>
-											<li><a  target="_blank" href="https://gameoflife.shawntompke.com/" class="button">View</a></li>
-										</ul>
-									</div>
+  /* Experience */
+  .job { border-left: 2px solid var(--border); padding: 0 0 42px 28px; position: relative; }
+  .job:last-child { padding-bottom: 0; }
+  .job::before {
+    content: ""; position: absolute; left: -7px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 4px rgba(56,189,248,.15);
+  }
+  .job h3 { font-size: 1.15rem; }
+  .job .role { color: var(--accent); font-weight: 600; font-size: .95rem; }
+  .job .dates { color: var(--muted); font-size: .85rem; margin-bottom: 12px; }
+  .job ul { list-style: none; margin-top: 10px; }
+  .job li {
+    color: var(--muted); font-size: .95rem; padding-left: 20px; position: relative; margin-bottom: 8px;
+  }
+  .job li::before { content: "▸"; color: var(--accent); position: absolute; left: 0; }
 
-									<div class="portfolioBox">
-											<span class="image main"><img src="./images/gmad.png" alt="" /></span>
-										<h3>Ghana Make A Difference</h3>
-										<h3>- A Management tool for Social Workers to track students.</h3>
-											<h4>React | Redux</h4>
-												<ul>
-													<li>Responsible for the front end. With one other developer.</li>
-													<li>Used React, Redux and React-Router to build into a single page application.</li>
-												</ul>
-										<ul class="actions">
-											<li><a target="_blank" href="https://github.com/Build-Week-Intl-School-Social-Worker" class="button primary">Code</a></li>
-											<li><a  target="_blank" href="https://ghanamakeadifference.shawntompke.com/" class="button">View</a></li>
-										</ul>
-										<p>login: test@testing.com <br> password: password</p>
-									</div>
-								</section>
-								<p>If you have any questions...
-								<a target="_blank" href="mailto:shawntompke@gmail.com">shawntompke@gmail.com</a>
-								</p>
-							</article>
+  /* Project */
+  .project {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 34px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .project a.link { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .project a.link:hover { text-decoration: underline; }
 
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/IMG_1212.jpg" alt="" /></span>
-								<h3>Doing Great Work - To Give Them a Great Life</h3>
-								<p>Everything I do, I do for the Glory of Jesus and to support my amazing family.</p>
-								<p>My family is the reason I strive to be the best I can. I want to show my kids what hard work will acheive. As a family of four we love to spend as much time outdoors as we can. I strive to teach my kids the art of hard work and adventure.</p>
-								<p>Success is continuing in the process, even when you feel like a failure. So never stop growing.</p>
-							</article>
+  /* Skills */
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 8px 16px; border-radius: 999px; font-size: .88rem; color: var(--text);
+    transition: border-color .15s;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .skill-group { margin-bottom: 28px; }
+  .skill-group h3 {
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--muted); margin-bottom: 14px; font-weight: 600;
+  }
 
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contact</h2>
-								<!-- <form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form> -->
-								<h3>Thanks for stopping by. :)</h3>
-								<ul class="icons">
-									<li><a href="https://www.linkedin.com/in/shawn-tompke/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked In</span></a></li>
-									<li><a href="https://github.com/Stompke" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
+  /* Contact */
+  .contact-box { text-align: center; padding: 20px 0; }
+  .contact-box p { color: var(--muted); max-width: 520px; margin: 0 auto 30px; }
+  .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-								<a href="mailto:shawntompke@gmail.com">shawntompke@gmail.com</a>
-							</article>
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0; text-align: center; color: var(--muted); font-size: .85rem;
+  }
 
-						<!-- Elements -->
-							<article id="elements">
-								<h2 class="major">Elements</h2>
+  @media (max-width: 600px) {
+    .nav-links a { margin-left: 14px; font-size: .85rem; }
+    header.hero { padding: 70px 0 60px; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
 
-								<section>
-									<h3 class="major">Text</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h4>Blockquote</h4>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h4>Preformatted</h4>
-									<pre><code>i = 0;
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">Shawn<span>Tompke</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#project">Project</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Senior Software Engineer · Front-End &amp; Full-Stack</span>
+    <h1>Building at the seam of<br><span class="grad">design &amp; engineering</span></h1>
+    <p class="tagline">I turn Figma concepts into polished, production-ready React UI — with deep design-systems expertise, full-stack range, and a focus on accessibility and components that teams actually adopt.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#experience">See my work</a>
+    </div>
+  </div>
+</header>
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-								</section>
+<section id="about" class="alt">
+  <div class="wrap">
+    <h2>What I bring</h2>
+    <p class="sub">6+ years building production web applications across the full stack, from Fortune-500 design systems to high-growth startup features.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="icon">🧩</span>
+        <h3>Design Systems at Scale</h3>
+        <p>Led Aileron, American Airlines' enterprise-wide design system — versioned npm packages consumed by teams across the organization, in React, Lit, and Angular.</p>
+      </div>
+      <div class="card">
+        <span class="icon">⚡</span>
+        <h3>Figma-to-Code Pipelines</h3>
+        <p>Built a design-token sync pipeline bridging design handoff and engineering, cutting design-to-code iteration time and keeping systems in lockstep with product design.</p>
+      </div>
+      <div class="card">
+        <span class="icon">🚀</span>
+        <h3>Full-Stack Ownership</h3>
+        <p>Shipped features end-to-end — DB schema, API and worker layers, UI, and mobile surfaces — with feature-flagged rollouts and analytics instrumentation.</p>
+      </div>
+      <div class="card">
+        <span class="icon">♿</span>
+        <h3>Accessibility First</h3>
+        <p>Partnered with design, accessibility, and QA teams to ship WCAG-compliant, high-performance components used in production at enterprise scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-								<section>
-									<h3 class="major">Lists</h3>
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="sub">Recent roles and the work I'm proudest of.</p>
 
-									<h4>Unordered</h4>
-									<ul>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
+    <div class="job">
+      <h3>Curri <span class="role">· Senior Software Engineer</span></h3>
+      <div class="dates">Jan 2026 – Present · Remote · High-growth logistics startup</div>
+      <ul>
+        <li>Owned the Overnight Holds feature end-to-end across the full stack — schema design, API/worker layer, booking-flow UI, and driver app — evolving it from a simple toggle into a complete multi-night scheduling flow.</li>
+        <li>Built core design system components from scratch as reusable primitives — styled with Tailwind, documented in Storybook, wired to Figma tokens — accelerating adoption across product surfaces.</li>
+        <li>Built a Figma-to-code token sync pipeline that cut design-to-code iteration time.</li>
+        <li>Migrated high-traffic booking and signup pages onto a modern design-token system, including theme fixes for third-party payment UI (Stripe Elements).</li>
+      </ul>
+    </div>
 
-									<h4>Alternate</h4>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
+    <div class="job">
+      <h3>DXC / Luxoft <span class="role">· Senior Software Engineer</span></h3>
+      <div class="dates">Oct 2020 – Nov 2025 · Remote</div>
+      <ul>
+        <li><strong style="color: var(--text);">American Airlines (3-yr contract):</strong> Led architecture and development of Aileron, the enterprise-wide design system, published as versioned npm packages consumed across the organization.</li>
+        <li>Built a component scanner platform analyzing usage across the entire AA GitHub org — introducing governance, adoption metrics, and dependency visibility.</li>
+        <li>Mentored developers and established best practices for versioning, testing, and CI/CD deployment pipelines.</li>
+        <li><strong style="color: var(--text);">Boeing (2-yr contract):</strong> Built and maintained pilot training simulators using React, Redux, and vanilla JavaScript.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-									<h4>Ordered</h4>
-									<ol>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis viverra.</li>
-										<li>Felis enim feugiat.</li>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis lorem.</li>
-										<li>Felis enim et feugiat.</li>
-									</ol>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
+<section id="project" class="alt">
+  <div class="wrap">
+    <h2>Featured Project</h2>
+    <p class="sub">A side project built end-to-end.</p>
+    <div class="project">
+      <h3>FenceLink — SaaS Quoting Platform for Contractors</h3>
+      <p style="color: var(--muted);">Architected and built a scalable quoting platform connecting customers and contractors through an interactive Mapbox interface, with secure Firebase/Firestore data models supporting multi-tenant access.</p>
+      <a class="link" href="https://fencelink.app" target="_blank" rel="noopener">fencelink.app →</a>
+    </div>
+  </div>
+</section>
 
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</section>
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="sub">The tools I reach for.</p>
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="pills">
+        <span class="pill">JavaScript</span><span class="pill">TypeScript</span><span class="pill">HTML</span><span class="pill">CSS / SCSS</span><span class="pill">Python</span><span class="pill">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Front-End &amp; Design Systems</h3>
+      <div class="pills">
+        <span class="pill">React</span><span class="pill">Redux</span><span class="pill">Lit</span><span class="pill">Angular</span><span class="pill">Tailwind</span><span class="pill">Storybook</span><span class="pill">Figma Tokens</span><span class="pill">Design Tokens</span><span class="pill">Accessibility (WCAG)</span><span class="pill">Component Architecture</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Back-End &amp; Data</h3>
+      <div class="pills">
+        <span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">GraphQL</span><span class="pill">Prisma</span><span class="pill">PostgreSQL</span><span class="pill">Firebase / Firestore</span><span class="pill">REST APIs</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Tooling &amp; Practices</h3>
+      <div class="pills">
+        <span class="pill">Git / GitHub</span><span class="pill">CI/CD (GitHub Actions)</span><span class="pill">Jest</span><span class="pill">Feature Flags</span><span class="pill">Datadog</span><span class="pill">AI-Assisted Development</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-								<section>
-									<h3 class="major">Table</h3>
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
+<section id="contact" class="alt">
+  <div class="wrap contact-box">
+    <h2>Let's build something</h2>
+    <p>I'm open to senior front-end, full-stack, and design engineer roles. Reach out — I'd love to talk.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:shawntompke@gmail.com">shawntompke@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/shawn-tompke/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
 
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
+<footer>
+  <div class="wrap">© 2026 Shawn Tompke · Built with plain HTML &amp; CSS</div>
+</footer>
 
-								<section>
-									<h3 class="major">Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Primary</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button primary disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Form</h3>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-											</div>
-											<div class="field half">
-												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-											</div>
-											<div class="field">
-												<label for="demo-category">Category</label>
-												<select name="demo-category" id="demo-category">
-													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="field">
-												<label for="demo-message">Message</label>
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</section>
-
-							</article>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; <a target="_blank" href="https://www.youtube.com/watch?v=9ALeruLwrGY&list=RD9ALeruLwrGY&index=5">KingJesus.</a></p>
-					</footer>
-
-			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			
-	</body>
+</body>
 </html>
